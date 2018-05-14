@@ -26,7 +26,20 @@ def lambda_handler(event, context):
             Key=key
         )
 
-        return key
+        client = boto3.client('rekognition')
+        response = client.detect_faces(
+            Image={
+                'S3Object': {
+                    'Bucket': bucket,
+                    'Name': key
+                }
+            },
+            Attributes=['ALL']
+        )
+
+        logger.info(response)
+
+        return response
 
     except Exception as e:
         logger.error(traceback.format_exc())

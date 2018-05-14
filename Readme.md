@@ -9,3 +9,5 @@ API Gatewayのマッピングテンプレートとバイナリサポートに、
 * application/octet-stream
 * image/png
 * image/jpg
+
+UploadしたついでにRekognitionで顔分析した結果をリターンします。
