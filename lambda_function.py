@@ -14,7 +14,8 @@ def lambda_handler(event, context):
 
     try:
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket(os.environ['BUCKET_NAME'])
+        bucekt_name = os.environ['BUCKET_NAME']
+        bucket = s3.Bucket(bucekt_name)
 
         image_body = base64.b64decode(event['body-json'])
 
@@ -30,7 +31,7 @@ def lambda_handler(event, context):
         response = client.detect_faces(
             Image={
                 'S3Object': {
-                    'Bucket': bucket,
+                    'Bucket': bucekt_name,
                     'Name': key
                 }
             },
